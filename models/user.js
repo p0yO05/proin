@@ -1,35 +1,26 @@
-// models/worker.js
 'use strict';
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  class Worker extends Model {
+  class User extends Model {
     static associate(models) {
       // Aquí puedes definir relaciones si es necesario
     }
   }
 
-  Worker.init(
+  User.init(
     {
-      worker_id: {
+      user_id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      worker_name: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      worker_status: {
+      role: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      worker_rol: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      salary: {
-        type: DataTypes.FLOAT(10, 2),
         allowNull: false,
       },
       email: {
@@ -37,28 +28,28 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
         validate: {
-          isEmail: true, // Valida que sea un correo válido
+          isEmail: true,
         },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      phone_number: {
+      phone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
-          len: [10, 15], // Opcional: para que el número tenga entre 10 y 15 caracteres
+          len: [10, 15],
         },
       },
     },
     {
       sequelize,
-      modelName: 'worker',
-      tableName: 'worker', // Asegúrate de que coincida con tu base de datos
-      timestamps: true,    // createdAt y updatedAt automáticos
+      modelName: 'user',
+      tableName: 'user',
+      timestamps: true,
     }
   );
 
-  return Worker;
+  return User;
 };

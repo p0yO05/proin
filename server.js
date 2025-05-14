@@ -7,11 +7,9 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const bodyParser = require("body-parser")
-const plateRoutes = require("./routes/plateRoutes");
-const tableRoutes = require("./routes/tableRoutes");
-const ingredientRoutes = require("./routes/ingredientsRoutes");
-const authRoutes = require("./routes/authRoutes");
-const workerRoutes = require("./routes/workerRoutes");
+const userRoutes = require("./routes/userRoutes");
+const quizRoutes = require("./routes/quizRoutes");
+const questionRoutes = require("./routes/questionRoutes");
 
 const app = express();
 
@@ -22,11 +20,9 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.use("/auth", authRoutes)    
-app.use("/worker", workerRoutes)
-app.use("/menu", plateRoutes)
-app.use("/table", tableRoutes)
-app.use("/ingredient", ingredientRoutes)
+app.use("/api/users", userRoutes);
+app.use("/api/quizzes", quizRoutes);
+app.use("/api/questions", questionRoutes);
 
 
 
