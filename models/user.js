@@ -17,11 +17,7 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      role: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -42,11 +38,26 @@ module.exports = (sequelize) => {
           len: [10, 15],
         },
       },
+      status: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "Activo",
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW,
+      },
     },
     {
       sequelize,
       modelName: 'user',
-      tableName: 'user',
+      tableName: 'user', // Cambié a plural para seguir convenciones comunes
       timestamps: true,
     }
   );

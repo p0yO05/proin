@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const QuestionController = require("../controllers/questionController");
+const QuestionController = require("../controller/questionController");
 
-router.get("/", QuestionController.getAllQuestions);
+router.get("/", QuestionController.getQuestions);
 router.get("/:id", QuestionController.getQuestionById);
-router.post("/", QuestionController.createQuestion);
+router.post("/", QuestionController.addQuestion);
 router.put("/:id", QuestionController.updateQuestion);
 router.delete("/:id", QuestionController.deleteQuestion);
 

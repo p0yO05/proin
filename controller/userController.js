@@ -31,7 +31,7 @@ const UserController = {
   // Crear nuevo usuario
   addUser: async (req, res) => {
     try {
-      const { user_name, email, password, phone_number, user_status } = req.body;
+      const { name, email, password, phone, status } = req.body;
 
       if (!email || !password) {
         return res.status(400).json({ error: "Email y contraseña son obligatorios" });
@@ -45,11 +45,11 @@ const UserController = {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const newUser = await user.create({
-        user_name,
+        name,
         email,
         password: hashedPassword,
-        phone_number,
-        user_status: user_status || "Activo",
+        phone,
+        status
       });
 
       return res.status(201).json({ message: "Usuario creado correctamente", data: newUser });
